@@ -1,4 +1,5 @@
 ---
+edition: 1.0.0
 kind: Pipeline
 name: "p-<% .git.shortCommitId %>-<% .currentTimestampMs %>"
 description: 'demo pipeline'
