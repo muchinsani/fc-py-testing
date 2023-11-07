@@ -1,15 +1,27 @@
-edition: 1.0.0          #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
-name: applicationName   #  应用名称
-access: xxx-account1    #  秘钥别名
+edition: 1.0.0        #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
+name: FullStack       #  项目名称
+access: default       #  秘钥别名
 
-vars: # [全局变量，提供给各个服务使用]
-  Key: Value
+# actions: # 自定义全局的执行逻辑
+#   pre-deploy: # 项目deploy执行之前执行
+#     - run: npm install # 要运行的命令行
+#       path: ./src # 命令行运行的路径
+#   success-deploy: # 项目deploy执行成功之后执行
+#     - plugin: dingding-robot # 要使用的插件
+#       args: # 插件的参数
+#         key: value 
+#   fail-deploy: # 项目deploy执行失败之后执行
+#     - plugin: dingding-robot # 要使用的插件
+#       args: # 插件的参数
+#         key: value 
+#   complete-deploy: # 项目deploy执行完成之后执行
+#     - plugin: dingding-robot # 要使用的插件
+#       args: # 插件的参数
+#         key: value 
 
-actions: globalActions #  自定义全局的执行逻辑
-
-services: # 可以包括多个服务
-  ServiceName: # 服务名称
-    access: xxx-account1      #  秘钥别名，如果和项目的access相同，可省略
-    component: componentName  #  组件名称
-    props: serviceProp        #  组件的属性值
-    actions: serviceActions   #  自定义执行逻辑
+services:
+  fc-py-testing: #  服务名称
+    component: python  # 组件名称
+    props: #  组件的属性值
+      src: ./
+      url: url
