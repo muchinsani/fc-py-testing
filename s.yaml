@@ -1,14 +1,47 @@
 ---
-edition: 1.0.0
+# Commit pipeline execution.
 kind: Pipeline
+# The name of the pipeline that you want to execute. The name must be globally unique. If a pipeline template exists, the pipeline execution cannot be successfully committed.
+# We recommend that you use a commit ID and timestamp to construct a unique name.
 name: "p-<% .git.shortCommitId %>-<% .currentTimestampMs %>"
+# Configure the pipeline description.
 description: 'demo pipeline'
+# Add custom labels for filtering.
+# Serverless Application Center also adds labels during the committing process.
 labels:
   myLabel: my-cicd-example
 spec:
   context:
     data:
+      ## Global DingTalk notification configurations. The configurations overwrite those in the template.
       #dingdingNotification:
+      # # Disable the global DingTalk notification. You can enable DingTalk notification in subsequent processes.
+      #  enable: false
+      # # Skip notifications when the task is successfully executed.
+      #  skipOnSuccess: false
+      # # Configure webhook settings for the DingTalk notification.
+      #  webhook: https://oapi.dingtalk.com/robot/send?access_token=xxx
+      # # The signature key for DingTalk notifications.
+      #  secret: xxx
+      # # The content of DingTalk notifications. Do not specify a fixed text unless you want to send only the fixed content.
+      #  message:
+      #    at:
+      #      isAtAll: false
+      #      atUserIds: ["admin"]
+      #      atMobiles: ["188xxxx8888"]
+      #    msgtype: text
+      # # Template syntax can be used in the text. A template can obtain the current execution status and exception information.
+      #    text: |
+      #      task finished.
+      #      TaskName: {{ .currentTask.name }}
+      #      Success: {{ .success }}
+      #      Status: {{ .currentTask.status.phase }}
+      # Use Serverless Devs to deploy the application. Specify the location of the s.yaml file. The content is automatically provided when the pipeline is triggered.
+      # deployFile: s.yaml
+      # Specify the name of the application. The name is automatically provided when the pipeline is triggered.
       appName: <% .appName %>
+  # The pipeline template that is used for the execution.
+  # You can select an existing template or configure a custom template in the YAML file.
+  # In this example, a template is referenced.
   templateName: mytemplate-<% .git.branch %>
 ---
