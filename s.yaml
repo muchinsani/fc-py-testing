@@ -19,13 +19,6 @@ services:
         handler: index.handler
         memorySize: 512
         timeout: 60
-      triggers:
-        - name: httpTrigger
-          type: http
-          config:
-            authType: anonymous
-            methods:
-              - GET
       customDomains:
         - domainName: auto
           protocol: HTTP
