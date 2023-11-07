@@ -19,11 +19,3 @@ services:
         handler: index.handler
         memorySize: 512
         timeout: 60
-      customDomains:
-        - domainName: auto
-          protocol: HTTP
-          routeConfigs:
-            - path: /*
-              methods:
-                - GET
-
