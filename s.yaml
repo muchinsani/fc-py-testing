@@ -1,3 +1,4 @@
+---
 kind: Pipeline
 name: "p-<% .git.shortCommitId %>-<% .currentTimestampMs %>"
 description: 'demo pipeline'
