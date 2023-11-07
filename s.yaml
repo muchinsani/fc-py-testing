@@ -1,1 +1,15 @@
+edition: 1.0.0          #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
+name: applicationName   #  应用名称
+access: xxx-account1    #  秘钥别名
 
+vars: # [全局变量，提供给各个服务使用]
+  Key: Value
+
+actions: globalActions #  自定义全局的执行逻辑
+
+services: # 可以包括多个服务
+  ServiceName: # 服务名称
+    access: xxx-account1      #  秘钥别名，如果和项目的access相同，可省略
+    component: componentName  #  组件名称
+    props: serviceProp        #  组件的属性值
+    actions: serviceActions   #  自定义执行逻辑
