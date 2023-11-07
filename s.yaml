@@ -1,27 +1,11 @@
-edition: 1.0.0        #  命令行YAML规范版本，遵循语义化版本（Semantic Versioning）规范
-name: FullStack       #  项目名称
-access: default       #  秘钥别名
-
-# actions: # 自定义全局的执行逻辑
-#   pre-deploy: # 项目deploy执行之前执行
-#     - run: npm install # 要运行的命令行
-#       path: ./src # 命令行运行的路径
-#   success-deploy: # 项目deploy执行成功之后执行
-#     - plugin: dingding-robot # 要使用的插件
-#       args: # 插件的参数
-#         key: value 
-#   fail-deploy: # 项目deploy执行失败之后执行
-#     - plugin: dingding-robot # 要使用的插件
-#       args: # 插件的参数
-#         key: value 
-#   complete-deploy: # 项目deploy执行完成之后执行
-#     - plugin: dingding-robot # 要使用的插件
-#       args: # 插件的参数
-#         key: value 
-
-services:
-  fc-py-testing: #  服务名称
-    component: python  # 组件名称
-    props: #  组件的属性值
-      src: ./
-      url: url
+kind: Pipeline
+name: "p-<% .git.shortCommitId %>-<% .currentTimestampMs %>"
+description: 'demo pipeline'
+labels:
+  myLabel: my-cicd-example
+spec:
+  context:
+    data:
+      #dingdingNotification:
+      appName: <% .appName %>
+  templateName: mytemplate-<% .git.branch %>
